@@ -29,6 +29,18 @@ public class IntArrayWorker
     return total;
   }
   
+  public int getCount()
+  {
+	  int count = 0;
+	  
+	  for(;;)
+	  {
+		  
+	  }
+	  
+	  return count;
+  }
+  
   public int getLargest()
   {
 	  int largest = Integer.MIN_VALUE;
@@ -51,7 +63,7 @@ public class IntArrayWorker
   {
 	  int total = 0;
 	  
-	  for (int col = 0; col < matrix[col].length; col++)
+	  for (int col = 0; col < matrix[row].length; col++)
 	  {
 		  total = total + matrix[row][col];
 	  }

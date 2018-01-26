@@ -52,6 +52,14 @@ public class PictureTester
     swan.explore();
   }
   
+  public static void testMask()
+  {
+	  Picture sample = new Picture("beach.jpg");
+	  sample.explore();
+	  sample.maskFilter(sample.getHeight()/2, sample.getWidth()/2);
+	  sample.explore();
+  }
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)

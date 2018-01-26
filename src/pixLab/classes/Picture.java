@@ -173,6 +173,35 @@ public class Picture extends SimplePicture
       }
     }   
   }
+  
+  public void maskFilter(int startRow, int startCol)
+  {
+	  Pixel fromPixel = null;
+	  Pixel toPixel = null;
+	  Picture coffee = new Picture("coffee.png");
+	  Pixel [][] toPixels = this.getPixels2D(); //the base layer of the picture
+	  Pixel [][] fromPixels = coffee.getPixels2D(); //the layer we're adding to the picture
+	  int fromRow = 0;
+	  for ( int toRow = startRow; fromRow < fromPixels.length && toRow < toPixels.length; toRow++)
+	  {
+		  int fromCol = 0;
+		  for (int toCol = startCol; fromCol < fromPixels[0].length && toCol < toPixels[0].length; toCol++)
+		  {
+			  fromPixel = fromPixels[fromRow][fromCol];
+			  toPixel = toPixels[toRow][toCol];
+			  if (!fromPixel.isTransparent())
+			  {
+				  toPixel.setColor(fromPixel.getColor());
+			  }
+			  fromCol++;
+		  }
+		  
+		  
+		  fromRow++;
+	  }
+	  
+	  
+  }
 
   /** Method to create a collage of several pictures */
   public void createCollage()
