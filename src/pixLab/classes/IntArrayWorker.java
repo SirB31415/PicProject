@@ -29,13 +29,19 @@ public class IntArrayWorker
     return total;
   }
   
-  public int getCount()
+  public int getCount(int number)
   {
 	  int count = 0;
 	  
-	  for(;;)
+	  for(int i = 0; i < matrix.length; i++)
 	  {
-		  
+		  for(int j = 0; j < matrix[i].length; j++)
+		  {
+			  if (matrix[i][j] == number)
+			  {
+				  count ++;
+			  }
+		  }
 	  }
 	  
 	  return count;

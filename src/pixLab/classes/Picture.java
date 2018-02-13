@@ -22,7 +22,7 @@ public class Picture extends SimplePicture
    * Constructor that takes no arguments 
    */
   public Picture ()
-  {
+  { 
     /* not needed but use it to show students the implicit call to super()
      * child constructors always call a parent constructor 
      */
@@ -178,7 +178,7 @@ public class Picture extends SimplePicture
   {
 	  Pixel fromPixel = null;
 	  Pixel toPixel = null;
-	  Picture coffee = new Picture("coffee.png");
+	  Picture coffee = new Picture("mask.png");
 	  Pixel [][] toPixels = this.getPixels2D(); //the base layer of the picture
 	  Pixel [][] fromPixels = coffee.getPixels2D(); //the layer we're adding to the picture
 	  int fromRow = 0;
@@ -246,7 +246,63 @@ public class Picture extends SimplePicture
       }
     }
   }
+  //my sad attempt at the glitchArt method
+ // public void wrapPicture()
+  //{
+	//  Pixel leftPixel = null;
+	  //Pixel rightPixel = null;
+	  //Pixel[][] pixels = this.getPixels2D();
+	  //Pixel[][] tempPixels = this.getPixels2D();
+	  //for(int i = 0; i < pixels.length; i++)
+	  //{
+	//	  for(int j = 0; j <= pixels[0].length*.2; j++)
+	//	  {
+	//		  tempPixels [i][j] = pixels [i][j];
+	//	  }
+	//	  //probs need to put one of these in the other^andbeneath
+	//	  for(int k = 0; k <= pixels[0].length*.4 && k > pixels[0].length*.2; k++)
+	//	  {
+	//		  pixels [i][k] = tempPixels [i][j];
+	//	  }
+	  //}
+  //}
   
+  public void glitchArt(int inputRow, int inputCol)
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  int shiftAmount = (int) (.33 * pixels[0].length);
+	  int width = pixels[0].length;
+	  
+	  for (int row = 0; row < pixels.length; row++)
+	  {
+		  Color [] currentColors = new Color[pixels[0].length];
+		  
+		  for (int col = 0; col < pixels[row].length; col++)
+		  {
+			  currentColors[col] = pixels[row][col].getColor();
+		  }
+		  for (int col = width; col < pixels[0].length; col++)
+		  {
+			  pixels[row][col].setColor(currentColors[(col + shiftAmount) % width]);
+		  }
+	  } 
+	  
+	  for(int i = inputRow; i < inputRow + 100; i++)
+	  {
+		  int [] currentRed = new int[100];
+		  int [] currentBlue = new int[100];
+		  for(int j = inputCol; j < inputCol + 100; j++)
+		  {
+			  currentRed[j] = pixels[i][j].getRed();
+			  currentBlue[j] = pixels[i][j].getBlue();
+		  }
+		  for(int k = inputCol + 100; k < inputCol + 200; k++)
+		  {
+			  pixels[i][k].setRed(currentRed[k]);
+			  pixels[i][k].setBlue(currentBlue[k]);
+		  }
+	  }
+  }
   
   /* Main method for testing - each class in Java can have a main 
    * method 
