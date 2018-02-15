@@ -287,21 +287,19 @@ public class Picture extends SimplePicture
 		  }
 	  } 
 	  
-	  for(int i = inputRow; i < inputRow + 100; i++)
+	  for(int row = inputRow; row < inputRow + 100; row++)
 	  {
 		  int [] currentRed = new int[100];
 		  int [] currentBlue = new int[100];
-		  for(int j = inputCol; j < inputCol + 100; j++)
+		  for(int col = inputCol; col < inputCol + 100; col++)
 		  {
-			  currentRed[j] = pixels[i][j].getRed();
-			  currentBlue[j] = pixels[i][j].getBlue();
-		  }
-		  for(int k = inputCol + 100; k < inputCol + 200; k++)
-		  {
-			  pixels[i][k].setRed(currentRed[k]);
-			  pixels[i][k].setBlue(currentBlue[k]);
+			  currentRed[col] = pixels[row][col].getRed();
+			  currentBlue[col] = pixels[row][col].getBlue();
+			  pixels[row + 150][col + 150].setRed(currentRed[col]);
+			  pixels[row + 150][col + 150].setBlue(currentBlue[col]);
 		  }
 	  }
+	  
   }
   
   /* Main method for testing - each class in Java can have a main 
