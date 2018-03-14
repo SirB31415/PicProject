@@ -63,6 +63,7 @@ public class PictureTester
   public static void testGlitch()
   {
 	  Picture pic = new Picture("beach.jpg");
+	  pic.explore();
 	  pic.glitchArt(40, 40);
 	  pic.explore();
   }
